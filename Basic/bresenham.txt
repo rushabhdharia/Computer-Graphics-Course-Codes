@@ -1,0 +1,73 @@
+SAP - 60004140018
+
+CODE:
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<graphics.h>
+void main()
+{
+	int gd=DETECT,gm;
+	int x1,y1,x0,y0,dy,dx,m,steps,i,p0,a,b;
+	clrscr();
+	initgraph(&gd,&gm,"");
+	line(325,0,325,500);
+	line(0,250,650,250);
+	printf("Enter x0,y0:\n");
+	scanf("%d%d",&x0,&y0);
+	printf("Enter x1,y1:\n");
+	scanf("%d%d",&x1,&y1);
+	dx=x1-x0;
+	dy=y1-y0;
+	m=dy/dx;
+	a=325;
+	b=250;
+	if(abs(m)<1)
+	{
+		steps=dx;
+		p0=2*abs(dy)-abs(dx);
+		for(i=0;i<steps;i++)
+		{
+			if(p0<0)
+			{
+				x0=x0+abs(dx)/dx;
+				y0=y0;
+				p0=p0+2*abs(dy);
+			}
+			else
+			{
+				x0=x0+abs(dx)/dx;
+				y0=y0+abs(dy)/dy;
+				p0=p0+2*abs(dy)-2*abs(dx);
+			}
+			putpixel(x0+a,b-y0,WHITE);
+		}
+	}
+	else
+	{
+		steps=dy;
+		p0=2*abs(dx)-abs(dy);
+		for(i=0;i<steps;i++)
+		{
+			if(p0<0)
+			{
+				y0=y0+abs(dy)/dy;
+				x0=x0;
+				p0=p0+2*abs(dx);
+			}
+			else
+			{
+				y0=y0+abs(dy)/dy;
+				x0=x0+abs(dx)/dx;
+				p0=p0+2*abs(dx)-2*abs(dy);
+			}
+			putpixel(x0+a,b-y0,WHITE);
+		}
+	}
+	getch();
+	closegraph();
+}
+
+Output:
+
